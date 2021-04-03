@@ -17,8 +17,8 @@ GPIO.setup(11, GPIO.OUT)                    #将GPIO引脚11设置为输出引�
 
 while True:                                 # 条件为真，下面程序一直循环执行
         GPIO.output(11, GPIO.HIGH)          #将11引脚电压置高，点亮LED灯
-        time.sleep(1)                       #延时1秒
+        time.sleep(3)                       #延时1秒
         GPIO.output(11, GPIO.LOW)           #将11引脚电压置低，熄灭LED灯
-        time.sleep(1)                       #延时1秒
+        time.sleep(3)                       #延时1秒
 if __name__ == '__main__':
     pass
