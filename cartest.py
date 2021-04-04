@@ -20,5 +20,12 @@ GPIO.output(2,True)
 GPIO.output(3,True)
 GPIO.output(4,False)
 
+GPIO.output(16,True)
+GPIO.output(20,True)
+GPIO.output(21,False)
+
+time.sleep(5)
+# GPIO.clearup()
+
 if __name__ == '__main__':
     pass
