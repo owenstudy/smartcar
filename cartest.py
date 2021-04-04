@@ -17,7 +17,7 @@ GPIO.setup(4,GPIO.OUT)
 
 GPIO.output(2,True)
 GPIO.output(3,True)
-GPIO.output(4,True)
+GPIO.output(4,False)
 
 if __name__ == '__main__':
     pass
