@@ -14,6 +14,7 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(2,GPIO.OUT)
 GPIO.setup(3,GPIO.OUT)
 GPIO.setup(4,GPIO.OUT)
+GPIO.setwarnings(False)
 
 GPIO.output(2,True)
 GPIO.output(3,True)
