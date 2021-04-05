@@ -38,8 +38,8 @@ def circle(sleep_time):
     GPIO.output(4,False)
 
     GPIO.output(16,True)
-    GPIO.output(20,True)
-    GPIO.output(21,False)
+    GPIO.output(20,False)
+    GPIO.output(21,True)
     time.sleep(sleep_time)
 # 后退
 def backward(sleep_time):
