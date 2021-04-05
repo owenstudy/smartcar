@@ -31,6 +31,16 @@ def forward(sleep_time):
     GPIO.output(20,False)
     GPIO.output(21,True)
     time.sleep(sleep_time)
+# 后退
+def backward(sleep_time):
+    GPIO.output(2,True)
+    GPIO.output(3,False)
+    GPIO.output(4,True)
+
+    GPIO.output(16,True)
+    GPIO.output(20,True)
+    GPIO.output(21,False)
+    time.sleep(sleep_time)
 # 停止运行
 def stop(sleep_time):
     GPIO.output(2,True)
@@ -42,14 +52,14 @@ def stop(sleep_time):
     GPIO.output(21,False)
     time.sleep(sleep_time)
 
-
 # auto run
 def autorun():
     run_times = 0
     car_init()
     while run_times<10:
-        forward(3)
-        stop(3)
+        forward(1)
+        backward(1)
+        stop(1)
         run_times = run_times + 1
 # time.sleep(5)
 # GPIO.clearup()
