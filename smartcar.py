@@ -46,6 +46,7 @@ def stop(sleep_time):
 # auto run
 def autorun():
     run_times = 0
+    car_init()
     while run_times<10:
         forward(3)
         stop(3)
