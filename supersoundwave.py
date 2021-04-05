@@ -36,7 +36,7 @@ GPIO.setup(24,GPIO.IN)
 time.sleep(2)
 try:
     while True:
-        distince = 'distince :%0.2f m'.format(checkdistince())
+        distince = 'distince :{0} m'.format(checkdistince())
         print(distince)
         time.sleep(0.5)
 except KeyboardInterrupt:
