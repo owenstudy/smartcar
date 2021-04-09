@@ -10,8 +10,13 @@
 import RPi.GPIO as GPIO                     #引入RPi.GPIO库函数命名为GPIO
 import time                                 #引入计时time函数
 
+# 使用超声波检查距离
 def checkdistince():
-
+    # GPIO 23, trigger
+    # GPIO 24, echo
+    # 初始化
+    GPIO.setup(23, GPIO.OUT, initial=GPIO.LOW)
+    GPIO.setup(24, GPIO.IN)
     # 发出触发信号
     GPIO.output(23, GPIO.HIGH)
     # 保持15us的超声波发射，避免能量太低无法返回
@@ -31,9 +36,9 @@ def checkdistince():
     return (t2 - t1) * 340 / 2
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(23,GPIO.OUT,initial=GPIO.LOW)
-GPIO.setup(24,GPIO.IN)
-time.sleep(2)
+# GPIO.setup(23,GPIO.OUT,initial=GPIO.LOW)
+# GPIO.setup(24,GPIO.IN)
+# time.sleep(2)
 try:
     while True:
         distince = 'distince :{0} m'.format(checkdistince())
