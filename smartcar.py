@@ -113,18 +113,6 @@ def stop(sleep_time):
     GPIO.output(21,False)
     time.sleep(sleep_time)
 
-def test_car():
-    run_times = 0
-    car_init()
-    while run_times<5:
-        turn_left(1)
-        run_times = run_times +1
-    stop(1)
-    run_times = 0
-    while run_times<10:
-        turn_right(1)
-        run_times = run_times +1
-    stop(1)
 # auto run
 def autorun():
     run_times = 0
@@ -144,9 +132,27 @@ def autorun_supersoundwave():
         distance = supersoundwave.checkdistince()
         # 距离小于0.5米时右转
         while distance<0.5:
-            pass
-
-
+            turn_left(0.5)
+            forward(1)
+            distance = supersoundwave.checkdistince()
+        # 安全距离内前行
+        forward(1)
+        stop(1)
+        run_times = run_times +1
+    stop()
+def test_car():
+    run_times = 0
+    car_init()
+    autorun_supersoundwave()
+    # while run_times<5:
+    #     turn_left(1)
+    #     run_times = run_times +1
+    # stop(1)
+    # run_times = 0
+    # while run_times<10:
+    #     turn_right(1)
+    #     run_times = run_times +1
+    # stop(1)
 
 # time.sleep(5)
 # GPIO.clearup()
