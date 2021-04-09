@@ -35,19 +35,19 @@ def checkdistince():
     # 返回距离，单位为米
     return (t2 - t1) * 340 / 2
 
-GPIO.setmode(GPIO.BCM)
-# GPIO.setup(23,GPIO.OUT,initial=GPIO.LOW)
-# GPIO.setup(24,GPIO.IN)
-# time.sleep(2)
-try:
-    while True:
-        distince = 'distince :{0} m'.format(checkdistince())
-        print(distince)
-        time.sleep(0.5)
-except KeyboardInterrupt:
-    GPIO.clearup()
 
 
 
 if __name__ == '__main__':
+    GPIO.setmode(GPIO.BCM)
+    # GPIO.setup(23,GPIO.OUT,initial=GPIO.LOW)
+    # GPIO.setup(24,GPIO.IN)
+    # time.sleep(2)
+    try:
+        while True:
+            distince = 'distince :{0} m'.format(checkdistince())
+            print(distince)
+            time.sleep(0.5)
+    except KeyboardInterrupt:
+        GPIO.clearup()
     pass
