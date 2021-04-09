@@ -130,14 +130,16 @@ def autorun_supersoundwave():
     car_init()
     while run_times<10:
         distance = supersoundwave.checkdistince()
+        print('distinct: {0}'.format(distance))
         # 距离小于0.5米时右转
         while distance<1:
             stop(1)
-            turn_left(0.5)
-            forward(0.5)
+            turn_left(0.2)
+            forward(0.2)
             distance = supersoundwave.checkdistince()
+            print('distinct: {0}'.format(distance))
         # 安全距离内前行
-        forward(1)
+        forward(0.2)
         stop(1)
         run_times = run_times +1
     stop(1)
