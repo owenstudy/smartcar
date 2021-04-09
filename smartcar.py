@@ -119,10 +119,12 @@ def test_car():
     while run_times<5:
         turn_left(1)
         run_times = run_times +1
+    stop(1)
+    run_times = 0
     while run_times<10:
         turn_right(1)
         run_times = run_times +1
-
+    stop(1)
 # auto run
 def autorun():
     run_times = 0
