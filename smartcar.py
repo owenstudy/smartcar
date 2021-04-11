@@ -143,10 +143,62 @@ def autorun_supersoundwave():
         stop(1)
         run_times = run_times +1
     stop(1)
-def test_car():
-    run_times = 0
+
+def test_pwm():
     car_init()
-    autorun_supersoundwave()
+    forward_pwm(20,2)
+#speed, 速度的百分比，如10代表按最高速度的10%运行，run_time 运行时间，单位为秒
+def forward_pwm(speed, run_time):
+    # 前进
+    GPIO.output(wheel_gpio_left_1, GPIO.LOW)
+    GPIO.output(wheel_gpio_left_2, GPIO.HIGH)
+    GPIO.output(wheel_gpio_right_1, GPIO.LOW)
+    GPIO.output(wheel_gpio_right_2, GPIO.HIGH)
+
+    pwm_left = GPIO.PWM(wheel_gpio_left_enable, 320)
+    pwm_right = GPIO.PWM(wheel_gpio_right_enable, 320)
+    pwm_left.start(speed)
+    pwm_right.start(speed)
+    time.sleep(run_time)
+    pwm_left.stop()
+    pwm_right.stop()
+    pass
+def autorun_pwm():
+    car_init()
+    # forward(0.5)
+    # stop(1)
+    # GPIO.setmode(GPIO.BCM)
+    GPIO.output(wheel_gpio_left_1,GPIO.LOW)
+    GPIO.output(wheel_gpio_left_2,GPIO.HIGH)
+    GPIO.output(wheel_gpio_right_1,GPIO.LOW)
+    GPIO.output(wheel_gpio_right_2,GPIO.HIGH)
+
+    pwm_pin_left = wheel_gpio_left_enable
+    pwm_pin_right = wheel_gpio_right_enable
+    GPIO.setup(pwm_pin_left, GPIO.OUT)  # 使能gpio口为输出
+    GPIO.setup(pwm_pin_right, GPIO.OUT)  # 使能gpio口为输出
+    pwm_left = GPIO.PWM(pwm_pin_left, 320)
+    pwm_right = GPIO.PWM(pwm_pin_right, 320)
+    for i in range(10,100):
+        pwm_left.start(i)
+        pwm_right.start(i)
+        print('ok')
+        time.sleep(0.1)
+    for j in range(100,10, -1):
+        print('yes')
+        pwm_left.start(j)
+        pwm_right.start(j)
+        time.sleep(0.1)
+    pwm_left.stop()
+    pwm_right.stop()
+    # GPIO.cleanup()
+    pass
+def test_car():
+    # pwm test
+    autorun_pwm()
+    # run_times = 0
+    # car_init()
+    # autorun_supersoundwave()
     # while run_times<5:
     #     turn_left(1)
     #     run_times = run_times +1
@@ -162,5 +214,5 @@ def test_car():
 
 if __name__ == '__main__':
     # autorun()
-    test_car()
+    test_pwm()
     pass
