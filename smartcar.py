@@ -163,6 +163,48 @@ def forward_pwm(speed, run_time):
     pwm_left.stop()
     pwm_right.stop()
     pass
+#speed, 速度的百分比，如10代表按最高速度的10%运行，run_time 运行时间，单位为秒
+# run_mode，运行方向，前进 FW，后退BW，左转TL，右转TR, CL-circle 原地转圈
+def run(run_mode, speed, run_time):
+    if run_mode == 'FW':
+        # 前进
+        GPIO.output(wheel_gpio_left_1, GPIO.HIGH)
+        GPIO.output(wheel_gpio_left_2, GPIO.LOW)
+        GPIO.output(wheel_gpio_right_1, GPIO.HIGH)
+        GPIO.output(wheel_gpio_right_2, GPIO.LOW)
+    elif run_mode == 'BW':
+        # 后退
+        GPIO.output(wheel_gpio_left_1, GPIO.LOW)
+        GPIO.output(wheel_gpio_left_2, GPIO.HIGH)
+        GPIO.output(wheel_gpio_right_1, GPIO.LOW)
+        GPIO.output(wheel_gpio_right_2, GPIO.HIGH)
+    elif run_mode == 'TL':
+        # 左转
+        GPIO.output(wheel_gpio_left_1, GPIO.LOW)
+        GPIO.output(wheel_gpio_left_2, GPIO.LOW)
+        GPIO.output(wheel_gpio_right_1, GPIO.HIGH)
+        GPIO.output(wheel_gpio_right_2, GPIO.LOW)
+    elif run_mode == 'TR':
+        # 右转
+        GPIO.output(wheel_gpio_left_1, GPIO.HIGH)
+        GPIO.output(wheel_gpio_left_2, GPIO.LOW)
+        GPIO.output(wheel_gpio_right_1, GPIO.LOW)
+        GPIO.output(wheel_gpio_right_2, GPIO.LOW)
+    elif run_mode == 'CL':
+        # 原地转圈
+        GPIO.output(wheel_gpio_left_1, GPIO.HIGH)
+        GPIO.output(wheel_gpio_left_2, GPIO.LOW)
+        GPIO.output(wheel_gpio_right_1, GPIO.LOW)
+        GPIO.output(wheel_gpio_right_2, GPIO.HIGH)
+
+    pwm_left = GPIO.PWM(wheel_gpio_left_enable, 320)
+    pwm_right = GPIO.PWM(wheel_gpio_right_enable, 320)
+    pwm_left.start(speed)
+    pwm_right.start(speed)
+    time.sleep(run_time)
+    pwm_left.stop()
+    pwm_right.stop()
+    pass
 def autorun_pwm():
     car_init()
     # forward(0.5)
