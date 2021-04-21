@@ -132,21 +132,23 @@ def autorun_supersoundwave():
         distance = supersoundwave.checkdistince()
         print('distinct: {0}'.format(distance))
         # 距离小于0.5米时右转
-        while distance<1:
-            stop(1)
-            turn_left(0.2)
-            forward(0.2)
+        while distance<0.5:
+            run('CL',15,0.02)
+            time.sleep(0.1)
             distance = supersoundwave.checkdistince()
             print('distinct: {0}'.format(distance))
+            time.sleep(0.2)
         # 安全距离内前行
-        forward(0.2)
-        stop(1)
+        run('FW', 30, 0.5)
         run_times = run_times +1
-    stop(1)
 
 def test_pwm():
     car_init()
-    forward_pwm(20,2)
+    autorun_supersoundwave()
+    # run('FW',30,1)
+    # run('BW',50,1)
+    # run('TL',20,1)
+    # run('TR',60,2)
 #speed, 速度的百分比，如10代表按最高速度的10%运行，run_time 运行时间，单位为秒
 def forward_pwm(speed, run_time):
     # 前进
@@ -164,7 +166,7 @@ def forward_pwm(speed, run_time):
     pwm_right.stop()
     pass
 #speed, 速度的百分比，如10代表按最高速度的10%运行，run_time 运行时间，单位为秒
-# run_mode，运行方向，前进 FW，后退BW，左转TL，右转TR, CL-circle 原地转圈
+# run_mode，运行方向，前进 FW，后退BW，左转TL，右转TR, CL-circle 原地转圈, SP-stop
 def run(run_mode, speed, run_time):
     if run_mode == 'FW':
         # 前进
@@ -196,6 +198,12 @@ def run(run_mode, speed, run_time):
         GPIO.output(wheel_gpio_left_2, GPIO.LOW)
         GPIO.output(wheel_gpio_right_1, GPIO.LOW)
         GPIO.output(wheel_gpio_right_2, GPIO.HIGH)
+    elif run_mode == 'SP':
+        # 停止
+        GPIO.output(wheel_gpio_left_1, GPIO.LOW)
+        GPIO.output(wheel_gpio_left_2, GPIO.LOW)
+        GPIO.output(wheel_gpio_right_1, GPIO.LOW)
+        GPIO.output(wheel_gpio_right_2, GPIO.LOW)
 
     pwm_left = GPIO.PWM(wheel_gpio_left_enable, 320)
     pwm_right = GPIO.PWM(wheel_gpio_right_enable, 320)

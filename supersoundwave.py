@@ -15,12 +15,12 @@ def checkdistince():
     # GPIO 23, trigger
     # GPIO 24, echo
     # 初始化
-    GPIO.setup(23, GPIO.OUT, initial=GPIO.LOW)
-    GPIO.setup(24, GPIO.IN)
+    # GPIO.setup(23, GPIO.OUT, initial=GPIO.LOW)
+    # GPIO.setup(24, GPIO.IN)
     # 发出触发信号
     GPIO.output(23, GPIO.HIGH)
     # 保持15us的超声波发射，避免能量太低无法返回
-    time.sleep(0.000015)
+    time.sleep(0.000030)
     # 停止发射超声波
     GPIO.output(23, GPIO.LOW)
     while not GPIO.input(24):
