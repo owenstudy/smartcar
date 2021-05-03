@@ -144,8 +144,9 @@ def autorun_supersoundwave():
 
 def test_pwm():
     car_init()
-    autorun_supersoundwave()
-    # run('FW',30,1)
+    # autorun_supersoundwave()
+    run('FW',30,1)
+    # run('SP',10,1)
     # run('BW',50,1)
     # run('TL',20,1)
     # run('TR',60,2)
